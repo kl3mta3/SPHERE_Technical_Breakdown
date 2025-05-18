@@ -1327,7 +1327,7 @@ Timeline view of the PingPal uptime validation sequence: initial request, 24-hou
 **Figure 13: PushToken Extend Handshake**  
 Two-way message flow between issuer and recipient to renew a token’s expiration period.
 
-![][image1]
+![Figure 1: System Architecture Diagram](img/Identity-Pat-Figure1.png)
 
 **Figure 1: System Architecture Diagram**
 
