@@ -1,4 +1,4 @@
-**SPHERE: An Architecture for Secure Peer-to-Peer Hosted Encryption Record Exchange, Enabling Authenticatable, User-Controlled Decentralized Systems for Content Access**
+SPHERE: An Architecture for Secure Peer-to-Peer Hosted Encryption Record Exchange, Enabling Authenticatable, User-Controlled Decentralized Systems for Content Access**
 
 By Kenneth Lasyone
 
