@@ -1327,79 +1327,105 @@ Timeline view of the PingPal uptime validation sequence: initial request, 24-hou
 **Figure 13: PushToken Extend Handshake**  
 Two-way message flow between issuer and recipient to renew a token’s expiration period.
 
-![Figure 1: System Architecture Diagram](img/Identity-Pat-Figure1.png)
+---
+
+![Figure 1: System Architecture Diagram](img/Figure1.png)
 
 **Figure 1: System Architecture Diagram**
 
 This diagram illustrates the decentralized identity framework’s architecture, including Contact creation, DHT-based storage, mutation via BRACE and token validation, and peer-to-peer block retrieval. Contact Records are stored in the DHT with cryptographic integrity, allowing nodes to authenticate, retrieve, or mutate identity data without centralized servers.
 
-![][image2]
+---
+
+![Figure 2: Login Decryption Flow](img/Figure2.png)
 
 **Figure 2: Login Decryption Flow**
 
 This diagram illustrates the login process using the BRACE (Byte-Routed Asymmetric Chain Encryption) protocol. After the user submits their credentials, the system retrieves obfuscated key segments from the DHT and decrypts them in a chain-driven sequence. The private key is reconstructed using directional metadata and reassembled via the stored SplitIndex. Authentication succeeds only if the rebuilt key produces a matching signature to the one stored in the Contact Record.
 
-![][image3]
+---
+
+![Figure 3: Contact Record DHT Structure](img/Figure3.png)
 
 **Figure 3: Contact Record DHT Structure**
 
 This table describes the internal structure of a Contact Record stored in the DHT. It includes metadata, identity keys, encrypted private key segments, and directional reconstruction parameters necessary for secure login and authenticated mutations.
 
-![][image4]
+---
+
+![Figure 4: Token-Based Publishing Validation](img/Figure4.png)
 
 **Figure 4: Token-Based Publishing Validation**
 
 This flowchart illustrates how token-based permissions are validated prior to allowing sensitive operations such as publishing or mutating a content block. The process verifies that a token is attached to the request, checks the token's digital signature using the issuer’s public key, confirms that the token was issued to the requesting identity (RecipientID), and ensures the token has not already been used. Only upon passing all validation steps is the publishing operation authorized, and the token is marked as consumed to prevent reuse.
 
-![][image5]
+---
+
+![Figure 5: High-level content hosting system architecture](img/Figure5.png)
 
 **Figure 5: High-level content hosting system architecture**
 
 In cold scenarios where the alias is not cached, SPHERE nodes resolve the alias and fetch the associated content block in \~1.5 seconds via two O(log n) DHT lookups. Warm requests (with cached alias) complete in \~700–800ms. Each block retrieval averages 8–10 P2P hops globally, backed by 5x redundancy, enabling consistent access times rivaling traditional centralized CDNs without requiring any centralized infrastructure.
 
-![][image6]
+---
+
+![Figure 6: Content Publishing and ContentID Generation Flow](img/Figure6.png)
 
 **Figure 6: Content Publishing and ContentID Generation Flow**
 
 This diagram outlines the process by which user-generated content is signed, hashed, and packaged into a DHT-compatible block. The content is first signed by the author, then hashed to create a deterministic ContentID. The resulting block, which includes the signature and metadata, is published to the network where it becomes globally addressable and tamper-evident.
 
-![][image7]
+---
+
+![Figure 7: Alias Resolution Flow from Alias to Content Retrieval](img/Figure7.png)
 
 **Figure 7: Alias Resolution Flow from Alias to Content Retrieval**
 
 This diagram illustrates how a human-readable alias (such as a web address) is resolved to its corresponding content block within the decentralized network. The alias is first hashed into a deterministic AliasID, which is used to query the Alias DHT. The resulting alias block contains the ContentID pointing to the actual hosted data. The system then retrieves the content block from the Content DHT, enabling the user to access the desired site or asset without relying on centralized DNS infrastructure.
 
-**![][image8]**
+---
+
+![Figure 8: Content Mutation Flow Using BRACE and Token Validation](img/Figure8.png)
 
 **Figure 8: Content Mutation Flow Using BRACE and Token Validation**
 
 This diagram illustrates the process through which an authorized user modifies content in the DHT. Upon requesting a mutation, the system fetches the original block, verifies the user’s credentials via the BRACE protocol, and constructs a new block retaining the original ContentID. A signed token is attached to the mutation request, which is validated by a peer node. If both the BRACE access and token are verified, the update is accepted and propagated through the network, ensuring only authenticated, token-gated mutations are accepted and distributed.
 
-![][image9]
+---
+
+![Figure 9: Redundancy and Caching Propagation Between Peer Nodes](img/Figure9.png)
 
 **Figure 9: Redundancy and Caching Propagation Between Peer Nodes**
 
 This figure illustrates how Kademlia’s XOR-based routing enables efficient content discovery with O(log n) hops. Assuming 5 billion nodes, worst-case routing requires \~32 hops, but with 5x redundancy, the average lookup completes in 8–10 hops. Each hop adds \~50–100ms, yielding a typical block retrieval time of 700–800ms. Combined with peer-side caching and deterministic content IDs, this model ensures fast, resilient content delivery at global scale.
 
-![][image10]
+---
+
+![Figure 10: Token Issuance Flow](img/Figure10.png)
 
 ### **Figure 10: Token Issuance Flow**
 
 ### This diagram illustrates the token issuance process within the SPHERE framework. A node performs a validated task for a peer, which then issues a cryptographically signed token. The recipient verifies and stores the token for future permissioned actions, while the issuer records the issuance for tracking and replay prevention.
 
-![][image11]
+---
+
+![Figure 11: Token Structure Breakdown](img/Figure11.png)
 
 ### **Figure 11: Token Structure Breakdown**
 
 This figure displays the structure of a token used in SPHERE, including identity fields, temporal constraints, and a digital signature. Each field is critical for validation, replay protection, and enforcement of decentralized permission control.
 
-![][image12]
+---
+
+![Figure 12: PingPal Lifecycle](img/Figure12.png)
 
 ### **Figure 12: PingPal Lifecycle**
 
 This figure outlines the lifecycle of a PingPal relationship, used to validate node uptime. A node requests a PingPal, confirms after peer response, waits 24 hours, and sends a follow-up ping to earn a token. This mechanism ensures non-reusable, time-gated reward issuance tied to verifiable availability.
 
-![][image13]
+---
+
+![Figure 13: PushToken Extend Handshake](img/Figure13.png)
 
 **Figure 13: PushToken Extend Handshake**
 
